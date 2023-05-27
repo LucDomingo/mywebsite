@@ -15,7 +15,6 @@ Introduction
 ======
 eBPF (extended Berkeley Packet Filter) is a powerful technology in the Linux kernel that allows for programmable packet filtering, tracing, and processing of network events in a safe and efficient manner.
 
-
 What's they are so powerful
 ======
 **Safety**: eBPF programs are designed with strong safety guarantees. They run in a restricted environment, providing isolation from the kernel. This ensures that malicious programs cannot crash the system or compromise its security.
@@ -28,6 +27,12 @@ What's they are so powerful
 
 **Performance**: eBPF programs are designed to execute with minimal overhead. They are compiled to highly optimized machine code and benefit from just-in-time [(JIT)](#Definitons) compilation and hardware acceleration where available. This makes eBPF well-suited for high-performance networking and tracing scenarios.
 
+Project based on eBPF
+======
+Here are a few notable projects that utilize eBPF and demonstrate its capabilities:
+**Cilium**: Networking and security project that leverages eBPF to provide advanced network visibility, security, and load balancing for containerized environments such as Kubernetes. It uses eBPF programs to enforce network policies, perform load balancing, and collect metrics and telemetry data.
+
+**Falco**: Cloud-native runtime security project that uses eBPF to perform behavior-based anomaly detection and intrusion prevention in containerized environments. It leverages eBPF to capture system calls, network events, and other behaviors, enabling real-time security monitoring and response.
 
 Definitons
 ------
@@ -44,3 +49,7 @@ The process of JIT compilation typically involves the following steps:
 - Execution: The compiled code is executed by the processor, providing a performance boost compared to interpreting the original bytecode.
 
 JIT compilation is commonly used in programming languages like Java (.class files compiled into Java bytecode) and .NET languages (Common Intermediate Language). So it offers performance (at runtime JIT compilation can apply optimizations), and portability (the same bytecode can be executed on different architectures).
+
+Resources
+------
+- [https://ebpf.io/]
