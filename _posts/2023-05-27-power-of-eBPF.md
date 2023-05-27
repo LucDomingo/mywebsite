@@ -5,8 +5,9 @@ permalink: /posts/2023/05/power-of-eBPF/
 tags:
   - eBPF
   - Linux
-  - Berkeley
   - JIT
+  - Python
+  - bcc
 ---
 
 This is a simple introduction to the unlimited power of eBPF
@@ -34,6 +35,81 @@ Here are a few notable projects that utilize eBPF and demonstrate its capabiliti
 
 **Falco**: Cloud-native runtime security project that uses eBPF to perform behavior-based anomaly detection and intrusion prevention in containerized environments. It leverages eBPF to capture system calls, network events, and other behaviors, enabling real-time security monitoring and response.
 
+**bcc**: It's a tool that provides a range of utilities and libraries for eBPF program development and observability. It enables users to write and run custom eBPF programs to trace and analyze system events, network activity, function calls, and more. These tools are widely used for troubleshooting, performance analysis, and observability purposes.
+
+It's time, let's practice
+======
+Let's code an eBPF program for network packet filtering using the bcc framework and Python.
+**Prerequisites**
+- Linux system with eBPF support (kernel version >= 4.1)
+- Python (version 3.x)
+- clang compiler (to compile the eBPF program)
+
+**Step 1**: Install Dependencies
+Install the necessary dependencies, including the bcc library, which provides tools and libraries for eBPF program development:
+```
+$ sudo apt-get install bpfcc-tools python3-bpfcc
+```
+Step 2: Write the eBPF Program
+Create a new file called packet_filter.c and add the following code:
+```
+#include <linux/bpf.h>
+#include <linux/if_ether.h>
+#include <linux/ip.h>
+
+SEC("filter")
+int packet_filter(struct __sk_buff *skb) {
+    struct ethhdr *eth = bpf_hdr_pointer(skb);
+    struct iphdr *ip = (struct iphdr *)(eth + 1);
+    
+    // Filter packets with source IP address 192.168.0.1
+    if (ip->saddr == htonl(0xC0A80001)) {
+        return XDP_DROP;
+    }
+    
+    return XDP_PASS;
+}
+```
+This eBPF program filters packets based on the source IP address. In this example, it drops packets with a source IP address of 192.168.0.1.
+
+**Step 3**: Compile the eBPF Program
+Compile the eBPF program using clang:
+```
+$ clang -O2 -target bpf -c packet_filter.c -o packet_filter.o
+```
+This generates the compiled eBPF object file packet_filter.o.
+
+**Step 4**: Write the Python Wrapper
+Create a new file called packet_filter.py and add the following code:
+
+```
+from bcc import BPF
+
+# Load the eBPF program
+bpf = BPF(src_file="packet_filter.o")
+
+# Attach the program to the network interface
+bpf.attach_xdp(device="eth0", program=bpf["packet_filter"])
+
+# Run the program
+try:
+    bpf.trace_print()
+except KeyboardInterrupt:
+    pass
+
+# Detach the program from the network interface
+bpf.remove_xdp(device="eth0")
+```
+This Python script uses the bcc library to load the eBPF program, attach it to the eth0 network interface, and trace the program's output.
+
+**Step 5**: Run the Program
+Execute the Python script with root privileges:
+
+```
+$ sudo python3 packet_filter.py
+```
+
+
 Definitons
 ------
 **JIT**:  It involves dynamically translating and optimizing sections of code just before they are executed, as opposed to ahead-of-time (AOT) compilation, where the entire program is compiled before execution.
@@ -53,3 +129,4 @@ JIT compilation is commonly used in programming languages like Java (.class file
 Resources
 ------
 - [https://ebpf.io/]
+- [https://github.com/iovisor/bcc]
