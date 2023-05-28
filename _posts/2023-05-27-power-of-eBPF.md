@@ -132,7 +132,12 @@ eBPF programs can be highly optimized and executed directly in the kernel, resul
 
 Working with eBPF programs and bpfilter **requires understanding and familiarity with low-level networking concepts** and eBPF programming.
 
-bpfilter is a relatively new feature and **may not be supported on all Linux distributions or kernel versions**. 
+bpfilter is a relatively new feature and **may not be supported on all Linux distributions or kernel versions**.
+
+Clearly, it may vary depending on your use case. If you have to write complex filtering rules or if you need low-latency packet processing, bpfilter could be a good alternative.
+
+Well now, let's try bpfilter
+======
 
 Definitons
 ------
@@ -154,3 +159,4 @@ Resources
 ------
 - [https://ebpf.io/]
 - [https://github.com/iovisor/bcc]
+- [https://lwn.net/Articles/867803/]
