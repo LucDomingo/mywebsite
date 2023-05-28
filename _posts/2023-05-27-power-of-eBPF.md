@@ -8,7 +8,7 @@ tags:
   - JIT
   - Python
   - bcc
-  - bpfilter
+  - xdp-filter
 ---
 
 This is a simple introduction to the unlimited power of eBPF
@@ -123,18 +123,14 @@ $ sudo python3 packet_filter.py
 
 Okay, very cool but ...
 ======
-Yes of course, this is a challenging approach to directly code eBPF program and not very industrial-friendly. That's why tool like **bpfilter** exists. This is a Linux kernel project aimed at providing a higher-level interface for configuring packet filtering using eBPF. It allows users to define firewall rules in a more user-friendly way compared to raw XDP programs.
-But concretely, what is the benefits/drawbacks to use a tool like bpfilter rather than firewalld for example ?
+Yes of course, this is a challenging approach to directly code eBPF program and not very industrial-friendly. That's why tool like **xdp-filter** exists.
+But concretely, what is the benefits/drawbacks to use a tool like xdp-filter rather than firewalld for example ?
 
-bpfilter provides a more **flexible** and powerful mechanism compared to traditional firewall rules. With eBPF, you can perform advanced packet analysis and make filtering decisions based on various criteria beyond the traditional IP and port information.
+xdp-filter is deliberately simple and so does not have the same matching capabilities as nftables.
 
 eBPF programs can be highly optimized and executed directly in the kernel, resulting in efficient packet processing and **low latency**. This can be particularly beneficial for scenarios where high-performance packet filtering is required.
 
-Working with eBPF programs and bpfilter **requires understanding and familiarity with low-level networking concepts** and eBPF programming.
-
-bpfilter is a relatively new feature and **may not be supported on all Linux distributions or kernel versions**.
-
-Clearly, it may vary depending on your use case. If you have to write complex filtering rules or if you need low-latency packet processing, bpfilter could be a good alternative.
+xdp-filter is a relatively new feature and **may not be supported on all Linux distributions or kernel versions**.
 
 Definitons
 ------
@@ -157,3 +153,4 @@ Resources
 - [https://ebpf.io/]
 - [https://github.com/iovisor/bcc]
 - [https://lwn.net/Articles/867803/]
+- [https://access.redhat.com/documentation/fr-fr/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-xdp-filter-for-high-performance-traffic-filtering-to-prevent-ddos-attacks_configuring-and-managing-networking]
