@@ -136,9 +136,6 @@ bpfilter is a relatively new feature and **may not be supported on all Linux dis
 
 Clearly, it may vary depending on your use case. If you have to write complex filtering rules or if you need low-latency packet processing, bpfilter could be a good alternative.
 
-Well now, let's try bpfilter
-======
-
 Definitons
 ------
 **JIT**:  It involves dynamically translating and optimizing sections of code just before they are executed, as opposed to ahead-of-time (AOT) compilation, where the entire program is compiled before execution.
