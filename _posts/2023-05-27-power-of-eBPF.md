@@ -58,6 +58,7 @@ $ sudo yum install bcc-tools python3-bcc
 Step 2: Write the eBPF Program
 Create a new file called packet_filter.c and add the following code:
 <pre>
+&#35;include &lt;linux/bpf.h&gt;
 `#include <linux/bpf.h>`
 `#include <linux/if_ether.h>`
 `#include <linux/ip.h>`
