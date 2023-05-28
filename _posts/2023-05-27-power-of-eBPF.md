@@ -53,7 +53,7 @@ $ sudo apt-get install bpfcc-tools python3-bpfcc
 </pre>
 Step 2: Write the eBPF Program
 Create a new file called packet_filter.c and add the following code:
-```
+<pre>
 #include <linux/bpf.h>
 #include <linux/if_ether.h>
 #include <linux/ip.h>
@@ -70,20 +70,20 @@ int packet_filter(struct __sk_buff *skb) {
     
     return XDP_PASS;
 }
-```
+</pre>
 This eBPF program filters packets based on the source IP address. In this example, it drops packets with a source IP address of 192.168.0.1.
 
 **Step 3**: Compile the eBPF Program
 Compile the eBPF program using clang:
-```
+<pre>
 $ clang -O2 -target bpf -c packet_filter.c -o packet_filter.o
-```
+</pre>
 This generates the compiled eBPF object file packet_filter.o.
 
 **Step 4**: Write the Python Wrapper
 Create a new file called packet_filter.py and add the following code:
 
-```
+<pre>
 from bcc import BPF
 
 # Load the eBPF program
@@ -100,15 +100,15 @@ except KeyboardInterrupt:
 
 # Detach the program from the network interface
 bpf.remove_xdp(device="eth0")
-```
+</pre>
 This Python script uses the bcc library to load the eBPF program, attach it to the eth0 network interface, and trace the program's output.
 
 **Step 5**: Run the Program
 Execute the Python script with root privileges:
 
-```
+<pre>
 $ sudo python3 packet_filter.py
-```
+</pre>
 
 
 Definitons
