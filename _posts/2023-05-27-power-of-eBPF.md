@@ -16,7 +16,7 @@ Introduction
 ======
 eBPF (extended Berkeley Packet Filter) is a powerful technology in the Linux kernel that allows for programmable packet filtering, tracing, and processing of network events in a safe and efficient manner.
 
-What's they are so powerful
+Why they are so powerful
 ======
 **Safety**: eBPF programs are designed with strong safety guarantees. They run in a restricted environment, providing isolation from the kernel. This ensures that malicious programs cannot crash the system or compromise its security.
 
