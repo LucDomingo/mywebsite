@@ -58,16 +58,18 @@ $ sudo yum install bcc-tools python3-bcc
 Step 2: Write the eBPF Program
 Create a new file called packet_filter.c and add the following code:
 <pre>
-#include <linux/bpf.h>
-#include <linux/if_ether.h>
-#include <linux/ip.h>
+#include "<linux/bpf.h>"
+#include "<linux/if_ether.h>"
+#include "<linux/ip.h>"
 
-SEC("filter")
 // The __sk_buff structure represents a network packet in the Linux kernel
 int packet_filter(struct __sk_buff *skb) {
+    void *data = (void *)(long)skb->data;
+    void *data_end = (void *)(long)skb->data_end;
+    
     // These lines define pointers to the Ethernet header (ethhdr) and IP header (iphdr) within the packet. 
     // The bpf_hdr_pointer function is used to obtain a pointer to the packet data.
-    struct ethhdr *eth = bpf_hdr_pointer(skb);
+    struct ethhdr *eth = data;
     struct iphdr *ip = (struct iphdr *)(eth + 1);
     
     // Filter packets with source IP address 192.168.0.1
