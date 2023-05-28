@@ -58,9 +58,9 @@ $ sudo yum install bcc-tools python3-bcc
 Step 2: Write the eBPF Program
 Create a new file called packet_filter.c and add the following code:
 <pre>
-#include \<linux/bpf.h\\>
-#include \<linux/if_ether.h\\>
-#include \<linux/ip.h\\>
+\#include \<linux/bpf.h\\>
+\#include \<linux/if_ether.h\\>
+\#include \<linux/ip.h\\>
 
 // The __sk_buff structure represents a network packet in the Linux kernel
 int packet_filter(struct __sk_buff *skb) {
