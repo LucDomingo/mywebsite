@@ -53,7 +53,7 @@ $ sudo apt-get install bpfcc-tools python3-bpfcc
 </pre>
 Or under centos:
 <pre>
-$ yum install bcc-tools python3-bcc
+$ sudo yum install bcc-tools python3-bcc
 </pre>
 Step 2: Write the eBPF Program
 Create a new file called packet_filter.c and add the following code:
