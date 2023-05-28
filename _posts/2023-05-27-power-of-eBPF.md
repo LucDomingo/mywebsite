@@ -59,9 +59,8 @@ Step 2: Write the eBPF Program
 Create a new file called packet_filter.c and add the following code:
 <pre>
 &#35;include &lt;linux/bpf.h&gt;
-`#include <linux/bpf.h>`
-`#include <linux/if_ether.h>`
-`#include <linux/ip.h>`
+&#35;include &lt;linux/if_ether.h&gt;
+&#35;include &lt;linux/ip.h&gt;
 
 // The __sk_buff structure represents a network packet in the Linux kernel
 int packet_filter(struct __sk_buff *skb) {
