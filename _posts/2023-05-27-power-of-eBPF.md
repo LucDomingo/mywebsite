@@ -8,6 +8,7 @@ tags:
   - JIT
   - Python
   - bcc
+  - bpfilter
 ---
 
 This is a simple introduction to the unlimited power of eBPF
@@ -97,7 +98,7 @@ Create a new file called packet_filter.py and add the following code:
 from bcc import BPF
 
 # Load the eBPF program
-bpf = BPF(src_file="packet_filter.o")
+bpf = BPF(src_file="packet_filter.c")
 
 # Attach the program to the network interface
 bpf.attach_xdp(device="eth0", program=bpf["packet_filter"])
@@ -120,6 +121,18 @@ Execute the Python script with root privileges:
 $ sudo python3 packet_filter.py
 </pre>
 
+Okay, very cool but ...
+======
+Yes of course, this is a challenging approach to directly code eBPF program and not very industrial-friendly. That's why tool like **bpfilter** exists. This is a Linux kernel project aimed at providing a higher-level interface for configuring packet filtering using eBPF. It allows users to define firewall rules in a more user-friendly way compared to raw XDP programs.
+But concretely, what is the benefits/drawbacks to use a tool like bpfilter rather than firewalld for example ?
+
+bpfilter provides a more **flexible** and powerful mechanism compared to traditional firewall rules. With eBPF, you can perform advanced packet analysis and make filtering decisions based on various criteria beyond the traditional IP and port information.
+
+eBPF programs can be highly optimized and executed directly in the kernel, resulting in efficient packet processing and **low latency**. This can be particularly beneficial for scenarios where high-performance packet filtering is required.
+
+Working with eBPF programs and bpfilter **requires understanding and familiarity with low-level networking concepts** and eBPF programming.
+
+bpfilter is a relatively new feature and **may not be supported on all Linux distributions or kernel versions**. 
 
 Definitons
 ------
