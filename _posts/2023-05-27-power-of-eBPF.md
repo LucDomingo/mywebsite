@@ -59,15 +59,19 @@ Create a new file called packet_filter.c and add the following code:
 #include <linux/ip.h>
 
 SEC("filter")
+// The __sk_buff structure represents a network packet in the Linux kernel
 int packet_filter(struct __sk_buff *skb) {
+    // These lines define pointers to the Ethernet header (ethhdr) and IP header (iphdr) within the packet. 
+    // The bpf_hdr_pointer function is used to obtain a pointer to the packet data.
     struct ethhdr *eth = bpf_hdr_pointer(skb);
     struct iphdr *ip = (struct iphdr *)(eth + 1);
     
     // Filter packets with source IP address 192.168.0.1
     if (ip->saddr == htonl(0xC0A80001)) {
+        // XDP_DROP instructs the kernel to drop the packet
         return XDP_DROP;
     }
-    
+    // XDP_PASS instructs that the packet should be passed through
     return XDP_PASS;
 }
 </pre>
@@ -78,7 +82,7 @@ Compile the eBPF program using clang:
 <pre>
 $ clang -O2 -target bpf -c packet_filter.c -o packet_filter.o
 </pre>
-This generates the compiled eBPF object file packet_filter.o.
+This generates the compiled eBPF object file packet_filter.o. This file contains the compiled eBPF bytecode, which is a low-level representation of the eBPF program. This bytecode is platform-independent and can be loaded and executed by the Linux kernel's eBPF virtual machine.
 
 **Step 4**: Write the Python Wrapper
 Create a new file called packet_filter.py and add the following code:
