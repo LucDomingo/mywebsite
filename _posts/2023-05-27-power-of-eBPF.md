@@ -132,8 +132,10 @@ eBPF programs can be highly optimized and executed directly in the kernel, resul
 
 xdp-filter is a relatively new feature and **may not be supported on all Linux distributions or kernel versions**.
 
+So it's a fairly simple tool that you can practice and learn about by following this [link]([https://link-url-here.org](https://access.redhat.com/documentation/fr-fr/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-xdp-filter-for-high-performance-traffic-filtering-to-prevent-ddos-attacks_configuring-and-managing-networking))
+
 Definitons
-------
+======
 **JIT**:  It involves dynamically translating and optimizing sections of code just before they are executed, as opposed to ahead-of-time (AOT) compilation, where the entire program is compiled before execution.
 The process of JIT compilation typically involves the following steps:
 - Loading: The program's bytecode or intermediate representation is loaded into memory.
@@ -149,7 +151,7 @@ The process of JIT compilation typically involves the following steps:
 JIT compilation is commonly used in programming languages like Java (.class files compiled into Java bytecode) and .NET languages (Common Intermediate Language). So it offers performance (at runtime JIT compilation can apply optimizations), and portability (the same bytecode can be executed on different architectures).
 
 Resources
-------
+======
 - [https://ebpf.io/]
 - [https://github.com/iovisor/bcc]
 - [https://lwn.net/Articles/867803/]
