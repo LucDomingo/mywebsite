@@ -48,9 +48,9 @@ Let's code an eBPF program for network packet filtering using the bcc framework 
 
 **Step 1**: Install Dependencies
 Install the necessary dependencies, including the bcc library, which provides tools and libraries for eBPF program development:
-```
+<pre>
 $ sudo apt-get install bpfcc-tools python3-bpfcc
-```
+</pre>
 Step 2: Write the eBPF Program
 Create a new file called packet_filter.c and add the following code:
 ```
