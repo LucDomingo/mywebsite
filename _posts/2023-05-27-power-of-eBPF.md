@@ -132,7 +132,7 @@ eBPF programs can be highly optimized and executed directly in the kernel, resul
 
 xdp-filter is a relatively new feature and **may not be supported on all Linux distributions or kernel versions**.
 
-So it's a fairly simple tool that you can practice and learn about by following this [link]([https://link-url-here.org](https://access.redhat.com/documentation/fr-fr/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-xdp-filter-for-high-performance-traffic-filtering-to-prevent-ddos-attacks_configuring-and-managing-networking))
+So it's a fairly simple tool that you can practice and learn about by following this [link]([https://access.redhat.com/documentation/fr-fr/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-xdp-filter-for-high-performance-traffic-filtering-to-prevent-ddos-attacks_configuring-and-managing-networking])
 
 Definitons
 ======
