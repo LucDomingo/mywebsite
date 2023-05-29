@@ -12,7 +12,7 @@ Everything is in the title, simple question and concise answer in this post
 
 Introduction
 ======
-To cipher disk on CentOS 8, we can use the [LUKS](#Definitons) wich is the standard disk encryption system for Linux (it's widely supported in CentOS and other linux distributions).
+To cipher disk on CentOS 8, we can use the [LUKS](Linux Unified Key Setup) wich is the standard disk encryption system for Linux (it's widely supported in CentOS and other linux distributions).
 
 Step-by-step guide
 ======
@@ -97,10 +97,10 @@ fichiers : complété
 
 We can see the default cipher used is aes-xts-plain64 and the default key size is 512 bits.
 
-Luks under the hood
+LUKS under the hood
 ======
 
 
 Resources
 ======
-- [https://ebpf.io/](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/encrypting-block-devices-using-luks_security-hardening)]
+- [https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/encrypting-block-devices-using-luks_security-hardening](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/encrypting-block-devices-using-luks_security-hardening)
