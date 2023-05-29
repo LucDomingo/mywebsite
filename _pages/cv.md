@@ -13,11 +13,11 @@ Education
 ======
 **2017-2020**
 - École d'ingénieurs ENSEIRB-MATMECA normalfont Télécommunication (spécialité génie logiciel des réseaux de télécommunication)
-- Talence, Bordeaux
+  - Talence, Bordeaux
 
 **2015-2017**
 - Classes préparatoires aux grandes écoles MPSI,MP
-- Lycée Bellevue - Toulouse
+  - Lycée Bellevue - Toulouse
 
 Work experience
 ======
