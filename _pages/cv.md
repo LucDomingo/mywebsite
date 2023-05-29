@@ -40,6 +40,12 @@ Projets Menés
 - Implémentation d'une distribution Kubernetes s'appuyant sur Socle avec une PSSI générique DSNA
   - Création et administration d'un cluster Kubernetes. Développement d'un proxy d'authentification s'interfaçant avec FreeIPA.
     - Mots-clés : Sysadmin Linux, Sécurité informatique, Python
+- Participation au développement d'un socle système générique avec une PSSI opérationnelle
+  - Réalisation d'un Socle avec une PSSI opérationnelle as a service. Haute adaptation à différents types de projets, utilisation et exploitation générique et multiples possibilités de spécifications du socle.
+    - Mots-clés : Sysadmin Linux, Sécurité informatique
+ - Développement d'un socle Bastionné pour le système de traitement initial des plans de vols
+   - Implémentation d'un hyperviseur conforme à une PSSI de haute criticité et  répondant à des contraintes liées à l'intégration du système de traitement initial des plans de vols.
+     - Mots-clés : Sysadmin Linux, Sécurité informatique, Python, Clustering
  
 Skills
 ======
