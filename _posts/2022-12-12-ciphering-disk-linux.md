@@ -1,7 +1,7 @@
 ---
 title: 'How can I cipher disk on my centos 8 ?'
 date: 2023-05-27
-permalink: /posts/2023/05/power-of-eBPF/
+permalink: /posts/2023/05/ciphering-disk-linux/
 tags:
   - LUKS
   - Ciphering
