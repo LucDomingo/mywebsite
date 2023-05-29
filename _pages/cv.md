@@ -32,7 +32,15 @@ Expérience professionnelle
 **2019**
 - LIAAD (Laboratory of Artificial Intelligence and Decision Support), Porto, Portugal
   - Stagiaire, 4 mois
-  
+ 
+Projets Menés
+======
+
+**2022-23**
+- Implémentation d'une distribution Kubernetes s'appuyant sur Socle avec une PSSI générique DSNA
+  - Création et administration d'un cluster Kubernetes. Développement d'un proxy d'authentification s'interfaçant avec FreeIPA.
+    - Mots-clés : Sysadmin Linux, Sécurité informatique, Python
+ 
 Skills
 ======
 * Skill 1
