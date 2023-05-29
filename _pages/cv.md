@@ -58,6 +58,7 @@ Projets Menés
   - Migration de la solution de réplication et résilience des données d'un logiciel critique du contrôle aérien
     - Migration du système de réplication DRBD vers un système plus moderne master-slave PostgreSQL et intégration dans le cluster Pacemaker.
       - Mots-clés : Sysadmin Linux, DRBD, Posgresql, Clustering Pacemaker
+      
   - Portage du socle système d'un logiciel critique du contrôle aérien
     -  Migration du socle système de CentOS 7 à CentOS 8. Adaptation et non régression des fonctionnalités
        - Mots-clés : Sysadmin Linux
@@ -72,11 +73,29 @@ Projets Menés
   - Mise en oeuvre de la création d'un cluster Kubernetes et intégration du système de traitement radar afin de démontrer la faisabilité de remplacement du système de basculement par des mécanismes d'orchestration Kubernetes.
     - Mots-clés : Docker, Kubernetes, C++ Qt, Apache Kafka, Jenkins
  
-Skills
+Compétences techniques
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+
+Dev
+-----
+* Python
+* Bash
+* Javascript, NodeJS
+* ReactJS, NextJS
+* C++
+* Go
+* Rust
+
+IT/DevOps
+-----
+* Docker, Podman
+* Kubernetes,
+* SysAdmin linux,
+* Kafka/ Zookeeper
+* Vagrant, Ansible, KVM
+* Jenkins
+* Git / Github / Gitlab
+* Mongodb, PostgreSQL
+* Google Cloud
+* Suite ELK
+* Pacemaker
