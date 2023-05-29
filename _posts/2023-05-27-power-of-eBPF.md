@@ -136,6 +136,7 @@ So it's a fairly simple tool that you can practice and learn about by following 
 
 Definitons
 ======
+
 **JIT**:  It involves dynamically translating and optimizing sections of code just before they are executed, as opposed to ahead-of-time (AOT) compilation, where the entire program is compiled before execution.
 The process of JIT compilation typically involves the following steps:
 - Loading: The program's bytecode or intermediate representation is loaded into memory.
