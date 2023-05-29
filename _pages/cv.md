@@ -27,13 +27,10 @@ Expérience professionnelle
   - Toulouse Basso-Cambo, France
 
 **2020**
-- Thales
-  - Toulouse Basso-Cambo, France}
+- Thales, Toulouse Basso-Cambo, France
   - Stagiaire, 6 mois
-  - 
 **2019**
-- LIAAD (Laboratory of Artificial Intelligence and Decision Support)}
-  - Porto, Portuga
+- LIAAD (Laboratory of Artificial Intelligence and Decision Support), Porto, Portuga
   - Stagiaire, 4 mois
   
 Skills
@@ -44,25 +41,3 @@ Skills
   * Sub-skill 2.2
   * Sub-skill 2.3
 * Skill 3
-
-Publications
-======
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
