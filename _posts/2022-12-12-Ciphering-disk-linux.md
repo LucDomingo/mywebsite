@@ -93,7 +93,7 @@ fichiers : complété
   offset:  32768 sectors
   size:    16744448 sectors
   mode:    read/write
-<pre>
+</pre>
 
 We can see the default cipher used is aes-xts-plain64 and the default key size is 512 bits.
 
