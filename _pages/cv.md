@@ -29,8 +29,9 @@ Expérience professionnelle
 **2020**
 - Thales, Toulouse Basso-Cambo, France
   - Stagiaire, 6 mois
+  - 
 **2019**
-- LIAAD (Laboratory of Artificial Intelligence and Decision Support), Porto, Portuga
+- LIAAD (Laboratory of Artificial Intelligence and Decision Support), Porto, Portugal
   - Stagiaire, 4 mois
   
 Skills
