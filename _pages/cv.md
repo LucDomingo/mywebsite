@@ -11,9 +11,13 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+**2017-2020**
+- École d'ingénieurs ENSEIRB-MATMECA normalfont Télécommunication (spécialité génie logiciel des réseaux de télécommunication)
+- Talence, Bordeaux
+
+**2015-2017**
+- Classes préparatoires aux grandes écoles MPSI,MP
+- Lycée Bellevue - Toulouse
 
 Work experience
 ======
