@@ -21,15 +21,14 @@ Education
 
 Expérience professionnelle
 ======
-**2023**
-- Thales
+**2020-2023**
+- Thales, Toulouse Basso-Cambo, France
   - Ingénieur developpement logiciel
-  - Toulouse Basso-Cambo, France
-
+  
 **2020**
 - Thales, Toulouse Basso-Cambo, France
   - Stagiaire, 6 mois
-  - 
+  
 **2019**
 - LIAAD (Laboratory of Artificial Intelligence and Decision Support), Porto, Portugal
   - Stagiaire, 4 mois
