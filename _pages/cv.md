@@ -19,17 +19,22 @@ Education
 - Classes préparatoires aux grandes écoles MPSI,MP
   - Lycée Bellevue - Toulouse
 
-Work experience
+Expérience professionnelle
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+**2023**
+- Thales
+  - Ingénieur developpement logiciel
+  - Toulouse Basso-Cambo, France
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+**2020**
+- Thales
+  - Toulouse Basso-Cambo, France}
+  - Stagiaire, 6 mois
+  - 
+**2019**
+- LIAAD (Laboratory of Artificial Intelligence and Decision Support)}
+  - Porto, Portuga
+  - Stagiaire, 4 mois
   
 Skills
 ======
