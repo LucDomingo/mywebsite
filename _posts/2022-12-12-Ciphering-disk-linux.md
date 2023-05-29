@@ -20,106 +20,87 @@ Step-by-step guide
 
 First install the necessary packages :
 <pre>
-$ sudo yum install cryptsetup
+[root@centos8 ~]# ls yum install cryptsetup
 </pre>
 
-Indentify the disk to cipher, for example /dev/sda.
+Indentify the disk to cipher, for example /dev/sdb.
+If the disk contains any mounted partitions, we need to use **umount** to unmount them :
 <pre>
-&#35;include &lt;linux/bpf.h&gt;
-&#35;include &lt;linux/if_ether.h&gt;
-&#35;include &lt;linux/ip.h&gt;
-
-// The __sk_buff structure represents a network packet in the Linux kernel
-int packet_filter(struct __sk_buff *skb) {
-    void *data = (void *)(long)skb->data;
-    void *data_end = (void *)(long)skb->data_end;
-    
-    // These lines define pointers to the Ethernet header (ethhdr) and IP header (iphdr) within the packet. 
-    // The bpf_hdr_pointer function is used to obtain a pointer to the packet data.
-    struct ethhdr *eth = data;
-    struct iphdr *ip = (struct iphdr *)(eth + 1);
-    
-    // Filter packets with source IP address 192.168.0.1
-    if (ip->saddr == htonl(0xC0A80001)) {
-        // XDP_DROP instructs the kernel to drop the packet
-        return XDP_DROP;
-    }
-    // XDP_PASS instructs that the packet should be passed through
-    return XDP_PASS;
-}
+[root@centos8 ~]# umount /dev/sdb1 /dev/sdb2 ...
 </pre>
-This eBPF program filters packets based on the source IP address. In this example, it drops packets with a source IP address of 192.168.0.1.
 
-**Step 3**: Compile the eBPF Program
-Compile the eBPF program using clang:
+Once it's done, we can initiate the encryption process: 
 <pre>
-$ clang -O2 -target bpf -c packet_filter.c -o packet_filter.o
+[root@centos8 ~]# cryptsetup luksFormat /dev/sdb
+
+WARNING!
+========
+Cette action écrasera définitivement les données sur /dev/sdb.
+
+Are you sure? (Type 'yes' in capital letters): YES
+Saisissez la phrase secrète pour /dev/sdb : 
+Vérifiez la phrase secrète : 
 </pre>
-This generates the compiled eBPF object file packet_filter.o. This file contains the compiled eBPF bytecode, which is a low-level representation of the eBPF program. This bytecode is platform-independent and can be loaded and executed by the Linux kernel's eBPF virtual machine.
 
-**Step 4**: Write the Python Wrapper
-Create a new file called packet_filter.py and add the following code:
+The command prompt you to enter and confirm a passphrase. **We will need it to unlock the disk later**.
+Now our disk is encrypted with LUKS.
 
+But we need to create a mapping to the encrypted disk. LUKS provides a layer of abstraction between the encrypted disk and the decrypted data, allowing the operating system and applications to interact with the disk as if it were unencrypted.
+
+When you encrypt a disk with LUKS, the encrypted data is stored on the physical disk, and the encryption key is securely stored within the LUKS header. To access the data on the encrypted disk, you need to provide the encryption key, which is typically a passphrase. 
+
+Creating a mapping with `cryptsetup luksOpen` command establishes a connection between the encrypted disk and a virtual device in the `/dev/mapper/` directory. This virtual device represents the decrypted view of the encrypted disk. It allows you to perform operations such as creating a file system, mounting the disk, and accessing the data. That's why only the owner of the passphrase can do this kind of operation.
+
+By creating this mapping, the LUKS system handles the decryption process transparently whenever data is read from or written to the encrypted disk. The mapping ensures that the data remains encrypted on the physical disk, and it is decrypted on-the-fly when accessed through the virtual device. 
+
+Let's create the mapping device:
 <pre>
-from bcc import BPF
-
-# Load the eBPF program
-bpf = BPF(src_file="packet_filter.c")
-
-# Attach the program to the network interface
-bpf.attach_xdp(device="eth0", program=bpf["packet_filter"])
-
-# Run the program
-try:
-    bpf.trace_print()
-except KeyboardInterrupt:
-    pass
-
-# Detach the program from the network interface
-bpf.remove_xdp(device="eth0")
+[root@centos8 ~]# cryptsetup luksOpen /dev/sdb encrypted_sdb
+Saisissez la phrase secrète pour /dev/sdb :
+[root@centos8 ~]# lsblk /dev/sdb
+NAME            MAJ:MIN RM SIZE RO TYPE  MOUNTPOINT
+sdb               8:16   0   8G  0 disk  
+└─encrypted_sdb 253:3    0   8G  0 crypt 
 </pre>
-This Python script uses the bcc library to load the eBPF program, attach it to the eth0 network interface, and trace the program's output.
 
-**Step 5**: Run the Program
-Execute the Python script with root privileges:
-
+Now we have unlock the encrypted disk we can create a filsesystem and mount itmkd:
 <pre>
-$ sudo python3 packet_filter.py
-</pre>
+[root@centos8 ~]# mkfs.ext4 /dev/mapper/encrypted_sdb 
+mke2fs 1.45.6 (20-Mar-2020)
+En train de créer un système de fichiers avec 2093056 4k blocs et 523264 i-noeuds.
+UUID de système de fichiers=985c7581-195e-47d3-babb-9365fcabec03
+Superblocs de secours stockés sur les blocs : 
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632
 
-Okay, very cool but ...
-======
-Yes of course, this is a challenging approach to directly code eBPF program and not very industrial-friendly. That's why tool like **xdp-filter** exists.
-But concretely, what is the benefits/drawbacks to use a tool like xdp-filter rather than firewalld for example ?
+Allocation des tables de groupe : complété                        
+Écriture des tables d'i-noeuds : complété                        
+Création du journal (16384 blocs) : complété
+Écriture des superblocs et de l'information de comptabilité du système de
+fichiers : complété
 
-xdp-filter is deliberately simple and so does not have the same matching capabilities as nftables.
+[root@centos8 ~]# mkdir /mnt/my_encrypted_fs
 
-eBPF programs can be highly optimized and executed directly in the kernel, resulting in efficient packet processing and **low latency**. This can be particularly beneficial for scenarios where high-performance packet filtering is required.
+[root@centos8 ~]# mount /dev/mapper/encrypted_sdb /mnt/my_encrypted_fs/
 
-xdp-filter is a relatively new feature and **may not be supported on all Linux distributions or kernel versions**.
+[root@centos8 ~]# cryptsetup status encrypted_sdb 
+/dev/mapper/encrypted_sdb is active and is in use.
+  type:    LUKS2
+  cipher:  aes-xts-plain64
+  keysize: 512 bits
+  key location: keyring
+  device:  /dev/sdb
+  sector size:  512
+  offset:  32768 sectors
+  size:    16744448 sectors
+  mode:    read/write
+<pre>
 
-So it's a fairly simple tool that you can practice and learn about by following this [link](https://access.redhat.com/documentation/fr-fr/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-xdp-filter-for-high-performance-traffic-filtering-to-prevent-ddos-attacks_configuring-and-managing-networking)
+We can see the default cipher used is aes-xts-plain64 and the default key size is 512 bits.
 
-Definitons
+Luks under the hood
 ======
 
-**JIT**:  It involves dynamically translating and optimizing sections of code just before they are executed, as opposed to ahead-of-time (AOT) compilation, where the entire program is compiled before execution.
-The process of JIT compilation typically involves the following steps:
-- Loading: The program's bytecode or intermediate representation is loaded into memory.
-
-- Analysis: The JIT compiler analyzes the bytecode to gather information about the code's behavior and usage patterns.
-
-- Compilation: Based on the gathered information, the JIT compiler selectively compiles specific sections of code into machine code. This compilation process includes optimizations tailored to the target hardware and execution environment.
-
-- Caching: The compiled machine code is cached for reuse in subsequent executions. This allows the JIT compiler to avoid recompiling the same code multiple times, improving performance.
-
-- Execution: The compiled code is executed by the processor, providing a performance boost compared to interpreting the original bytecode.
-
-JIT compilation is commonly used in programming languages like Java (.class files compiled into Java bytecode) and .NET languages (Common Intermediate Language). So it offers performance (at runtime JIT compilation can apply optimizations), and portability (the same bytecode can be executed on different architectures).
 
 Resources
 ======
-- [https://ebpf.io/]
-- [https://github.com/iovisor/bcc]
-- [https://lwn.net/Articles/867803/]
-- [https://access.redhat.com/documentation/fr-fr/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/using-xdp-filter-for-high-performance-traffic-filtering-to-prevent-ddos-attacks_configuring-and-managing-networking]
+- [https://ebpf.io/](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/encrypting-block-devices-using-luks_security-hardening)]
