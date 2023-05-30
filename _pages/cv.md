@@ -9,16 +9,6 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-**2017-2020**
-- École d'ingénieurs ENSEIRB-MATMECA normalfont Télécommunication (spécialité génie logiciel des réseaux de télécommunication)
-  - Talence, Bordeaux
-
-**2015-2017**
-- Classes préparatoires aux grandes écoles MPSI,MP
-  - Lycée Bellevue - Toulouse
-
 Expérience professionnelle
 ======
 **2020-2023**
@@ -32,6 +22,16 @@ Expérience professionnelle
 **2019**
 - LIAAD (Laboratory of Artificial Intelligence and Decision Support), Porto, Portugal
   - Stagiaire, 4 mois
+
+Education
+======
+**2017-2020**
+- École d'ingénieurs ENSEIRB-MATMECA Télécommunication (spécialité génie logiciel des réseaux de télécommunication)
+  - Talence, Bordeaux
+
+**2015-2017**
+- Classes préparatoires aux grandes écoles MPSI,MP
+  - Lycée Bellevue - Toulouse
  
 Projets Menés
 ======
