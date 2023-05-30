@@ -1,5 +1,5 @@
 ---
-title: 'Terraform learn the concepts'
+title: 'Terraform concepts'
 date: 2023-01-10
 permalink: /posts/2012/08/terraform-concepts/
 tags:
