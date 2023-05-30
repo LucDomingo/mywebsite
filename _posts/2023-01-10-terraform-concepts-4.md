@@ -8,6 +8,10 @@ tags:
   - AWS
 ---
 
+<code style="font-size: 14px;">
+def init()
+</code>
+
 The goal of this post is to expose terraform concepts. Understanding theses concepts give solid basis.
 
 Concepts
