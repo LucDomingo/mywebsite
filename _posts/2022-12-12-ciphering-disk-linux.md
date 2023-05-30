@@ -12,7 +12,7 @@ Everything is in the title, simple question and concise answer in this post
 
 Introduction
 ======
-To cipher disk on CentOS 8, we can use the [LUKS](Linux Unified Key Setup) wich is the standard disk encryption system for Linux (it's widely supported in CentOS and other linux distributions).
+To cipher disk on CentOS 8, we can use the LUKS (Linux Unified Key Setup) wich is the standard disk encryption system for Linux (it's widely supported in CentOS and other linux distributions).
 
 Step-by-step guide
 ======
