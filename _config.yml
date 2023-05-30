@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "fr-FR"
-title                    : "LucDomingo'site"
+title                    : "LucDomingo"
 title_separator          : "-"
 name                     : &name "Luc Domingo"
 description              : &description "Ingénieur génie logiciel & architecte"
