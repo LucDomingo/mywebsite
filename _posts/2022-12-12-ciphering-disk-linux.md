@@ -99,7 +99,13 @@ We can see the default cipher used is aes-xts-plain64 and the default key size i
 
 LUKS under the hood
 ======
+The first step LUKS operates is **partition setup** by overwritting it with random data to eliminate any residual information.
 
+Then LUKS creates an **header**. The latter is metadata that stores essential information about the encrypted volume (encryption algorithm, key slots, key management details, ...). This header is placed at the beginning of the partition.
+
+During the creating of an encrypted volume, LUKS generates a **random master key**. This key is used to encrypt the data on the disk. The master key is then encrypted with the user-provided passphrase and then stored in the key slots within header.
+
+Once you unlock the encrypted disk providing the passphrase, the decrypted master key is tempraly stored in volatile memory and used to decrypt and encrypt data on-the-fly. You can use **cryptsetup luksClose** to clear the decrypted master key from volatile memory and lock the encrypted disk.
 
 Resources
 ======
