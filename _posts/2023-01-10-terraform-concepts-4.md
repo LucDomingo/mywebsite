@@ -80,3 +80,14 @@ output "instance_ips" {
 value = aws_instance.example_instance[*].public_ip
 }
 </pre>
+
+Then :
+ - Copy the example code into `main.tf`.
+ - Run `terraform init` to initialize the project and download the necessary provider plugins.
+ - Run `terraform apply` to create the resources according to the configuration. Review the plan and confirm the changes when prompted.
+ - After successful provisioning, you will see the public IP addresses of the instances as output.
+
+Definition
+======
+**AWS VPC**: This service allows to provision an isolated virtual network environment. So like a traditionnal network we can  define IP address range, create subnets, configure route tables, ...
+
