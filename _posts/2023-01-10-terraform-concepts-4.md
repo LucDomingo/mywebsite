@@ -35,7 +35,7 @@ But to better understand these concepts, it could be interestinf to work on a ba
 
 Let's work on an example
 ======
-<code style="font-size: 14px;" class="language-hcl">
+<code style="font-size: 14px;">
 # We use the aws provider to interact with AWS services in the provider block. One of the option of AWS provider block allows us to choose the region to where deploy our EC2 instances.
   provider "aws" {
   region = "us-west-2"
