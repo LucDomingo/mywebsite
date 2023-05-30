@@ -1,7 +1,7 @@
 ---
 title: 'The power of eBPF'
-date: 2023-05-27
-permalink: /posts/2023/05/power-of-eBPF/
+date: 2022-08-15
+permalink: /posts/2022/08/power-of-eBPF/
 tags:
   - eBPF
   - Linux
