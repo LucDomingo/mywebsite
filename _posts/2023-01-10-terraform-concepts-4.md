@@ -31,3 +31,48 @@ The `terraform apply` command is used to apply the changes specified in your Ter
 So these are the key concepts in Terraform that provide a foundation for building and managing infrastructure. 
 
 But to better understand these concepts, it could be interestinf to work on a basic example...
+
+Let's work on an example
+======
+```hcl
+# Provider configuration
+provider "aws" {
+region = "us-west-2"
+}
+
+# Variables
+variable "instance_count" {
+description = "Number of instances to create"
+type = number
+default = 2
+}
+
+# Networking
+resource "aws_vpc" "example_vpc" {
+cidr_block = "10.0.0.0/16"
+}
+
+resource "aws_subnet" "example_subnet" {
+vpc_id = aws_vpc.example_vpc.id
+cidr_block = "10.0.1.0/24"
+}
+
+# Compute resources
+resource "aws_instance" "example_instance" {
+count = var.instance_count
+instance_type = "t2.micro"
+ami = "ami-0c94855ba95c71c99" # Replace with your desired AMI
+
+subnet_id = aws_subnet.example_subnet.id
+associate_public_ip_address = true
+
+tags = {
+Name = "Example Instance ${count.index + 1}"
+}
+}
+
+# Output
+output "instance_ips" {
+value = aws_instance.example_instance[*].public_ip
+}
+```
