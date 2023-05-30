@@ -5,6 +5,7 @@ permalink: /posts/2012/08/terraform-concepts/
 tags:
   - terraform
   - Infrastruture as Code (IaC)
+  - AWS
 ---
 
 The goal of this post is to expose terraform concepts. Understanding theses concepts give solid basis.
@@ -35,43 +36,46 @@ But to better understand these concepts, it could be interestinf to work on a ba
 Let's work on an example
 ======
 ```hcl
-# Provider configuration
-provider "aws" {
-region = "us-west-2"
+# We use the aws provider to interact with AWS services in the provider block. One of the option of AWS provider block allows us to choose the region to where deploy our EC2 instances.
+  provider "aws" {
+  region = "us-west-2"
 }
 
-# Variables
+# variable is a very simple block that provides variables definition
+# The instance_count variable is defined to control the number of instances to create.
 variable "instance_count" {
-description = "Number of instances to create"
-type = number
-default = 2
+  description = "Number of instances to create"
+  type = number
+  default = 2
 }
 
-# Networking
+# Provisions a VPC
 resource "aws_vpc" "example_vpc" {
-cidr_block = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/16"
 }
 
+#  Provision a subnet for our aws_vpc
 resource "aws_subnet" "example_subnet" {
-vpc_id = aws_vpc.example_vpc.id
-cidr_block = "10.0.1.0/24"
+  vpc_id = aws_vpc.example_vpc.id
+  cidr_block = "10.0.1.0/24"
 }
 
-# Compute resources
+# The example uses the aws_instance resource to create EC2 instances. The number of instances created is controlled by the instance_count variable.
 resource "aws_instance" "example_instance" {
-count = var.instance_count
-instance_type = "t2.micro"
-ami = "ami-0c94855ba95c71c99" # Replace with your desired AMI
+  count = var.instance_count
+  instance_type = "t2.micro"
+  ami = "XXX" # Replace with your desired AMI
 
-subnet_id = aws_subnet.example_subnet.id
-associate_public_ip_address = true
+  subnet_id = aws_subnet.example_subnet.id
+  associate_public_ip_address = true
 
-tags = {
-Name = "Example Instance ${count.index + 1}"
+  # Each EC2 instance is tagged with a unique name using the `tags` attribute
+  tags = {
+    Name = "Example Instance ${count.index + 1}"
+  }
 }
-}
 
-# Output
+# The public IP addresses of the created instances are exposed as an output after the terraform apply command.
 output "instance_ips" {
 value = aws_instance.example_instance[*].public_ip
 }
