@@ -95,3 +95,6 @@ spec:
 - Once MetalLB receives the ARP request, it maps the virtual IP address to the backend services and forwards the traffic accordingly.
 - External clients can now access the LoadBalancer Service using the allocated virtual IP address, and MetalLB will distribute the traffic to the backend services. In our case on 192.168.65.69:80
 
+Resources
+======
+[https://metallb.universe.tf/concepts/](https://metallb.universe.tf/concepts/)
