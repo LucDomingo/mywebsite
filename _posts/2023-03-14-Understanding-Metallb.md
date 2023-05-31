@@ -44,3 +44,54 @@ Here's a high-level overview of how MetalLB works:
 **Service Discovery**: MetalLB integrates with the Kubernetes service discovery mechanisms. When a service is created or updated, MetalLB automatically assigns an external IP address to it. This enables external clients to reach the service without any manual configuration.
 
 **High Availability**: MetalLB ensures high availability by constantly monitoring the health of backend services. If a backend service becomes unavailable, MetalLB stops directing traffic to it and redirects requests to other healthy instances. This helps in maintaining the availability and reliability of the applications.
+
+Concrete example
+======
+
+**Step 1**: Install and Configure MetalLB:
+- Install MetalLB in your Kubernetes cluster by following the [official installation instructions](https://metallb.universe.tf/installation/) provided by the MetalLB project.
+- Configure MetalLB in Layer 2 mode by creating a custom resource with the desired IP address range for load balancing. For example, you can specify a range of IP addresses from your network subnet that will be used by MetalLB to allocate virtual IP addresses.
+<pre>
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: my-app-adv
+  namespace: metallb-system
+</pre>
+<pre>
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: my-app-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.65.69-192.168.65.70
+</pre>
+
+**Step 2**: Create Backend Services:
+- Define the backend services in your Kubernetes cluster that you want to expose externally. These services can be a set of pods or deployments running your application.
+
+**Step 3**: Create a LoadBalancer Service:
+- Create a Kubernetes Service resource of type LoadBalancer to expose your backend services externally. This is where MetalLB comes into play.
+- Specify the desired ports, protocols, and selectors in the Service definition to match your backend services.
+- MetalLB will allocate a virtual IP address from the configured IP address range and assign it to the LoadBalancer Service.
+<pre>
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: my-app
+</pre>
+
+**Step 4**: Access the LoadBalancer Service:
+- MetalLB, in Layer 2 mode, responds to ARP requests for the virtual IP address it allocated for the LoadBalancer Service.
+- Once MetalLB receives the ARP request, it maps the virtual IP address to the backend services and forwards the traffic accordingly.
+- External clients can now access the LoadBalancer Service using the allocated virtual IP address, and MetalLB will distribute the traffic to the backend services. In our case on 192.168.65.69:80
+
