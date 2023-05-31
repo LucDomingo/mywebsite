@@ -64,8 +64,9 @@ fn change(some_string: &mut String) {
 ```
 But mutable references have **one big restriction**: you can have only one mutable reference to a particular piece of data in a particular scope
 
-
-
+Resources
+======
+[Better resource to learn rust, the official doc](https://doc.rust-lang.org/book/)
 
 
 
