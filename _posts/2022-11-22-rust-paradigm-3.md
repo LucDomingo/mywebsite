@@ -16,7 +16,7 @@ Key aspects
 Let's take a simple example:
 <pre>
 {
-    let my_var = "rust_is_fun";   // s is valid from this point forward
+    let my_var = "rust_is_fun";   // my_var is valid from this point forward
     // use my_var
 }                      // scope is now over, and my_var is no longer valid
 </pre>
@@ -30,7 +30,7 @@ fn main() {
     my_func(my_var);             // my_var's value moves into the function my_func...
                                          // ... and so is no longer valid here
 
-    let my_int = 5;                      // x comes into scope
+    let my_int = 5;                      // my_int comes into scope
 
     makes_copy(my_int);             // my_int would move into the function,
                                     // but i32 is Copy, so it's okay to still
@@ -39,5 +39,33 @@ fn main() {
 } // Both variable goes out of scope
 </pre>
 
-To handle situations where you need to temporarily access a value without taking ownership, Rust introduces borrowing. Borrowing allows multiple references to a value but with certain restrictions to prevent data races and memory issues. This concept is enforced at compile time by the borrow checker.
+To handle situations where you need to temporarily access a value without taking ownership, Rust introduces borrowing. Borrowing allows multiple references to a value but with certain restrictions to prevent data races and memory issues.
+Let's illustrate borrowing with a simple example
+```
+let my_var = String::from("rust_is_fun");
+let len = calculate_length(&my_var);
+```
+The &my_var syntax lets us create a reference that refers to the value of s1 but does not own it. Because it does not own it, the value it points to will not be dropped when the reference goes out of scope.
+
+**Mutability and Immutability**:
+By default, variables in Rust are immutable, meaning they cannot be changed once assigned. This ensures thread safety and enables more predictable code.
+However, Rust also allows mutable bindings, denoted with the `mut` keyword, when you need to modify a value.
+We can use mutable reference for example:
+```
+fn main() {
+    let mut my_var = String::from("rust_is_fun");
+
+    change(&mut my_var);
+}
+
+fn change(some_string: &mut String) {
+    some_string.push_str("mutable_borrowing_is_fun");
+}
+```
+But mutable references have **one big restriction**: you can have only one mutable reference to a particular piece of data in a particular scope
+
+
+
+
+
 
