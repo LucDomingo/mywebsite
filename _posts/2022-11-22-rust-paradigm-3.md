@@ -64,49 +64,6 @@ fn change(some_string: &mut String) {
 ```
 But mutable references have **one big restriction**: you can have only one mutable reference to a particular piece of data in a particular scope. The benefit of having this restriction is that Rust can prevent data races. We also cannot have a mutable reference while we have an immutable one. Users of an immutable reference don’t expect the values to suddenly change.
 
-**Pattern Matching**:
-Pattern matching is a powerful feature in Rust that allows you to destructure and match on different data structures, including enums, structs, tuples, and more. It enables concise and expressive code when dealing with complex data structures.
-Pattern matching is often used in combination with Rust's `match` expression, which compares a value against a series of patterns and executes the corresponding branch based on the matched pattern.
-Example: 
-<pre>
-enum Coin {
-    Penny,
-    Nickel,
-    Dime,
-    Quarter(UsState),
-}
-
-#[derive(Debug)]
-enum UsState {
-    Alabama,
-    Alaska,
-    // ... other states
-}
-
-fn value_in_cents(coin: Coin) -> u8 {
-    match coin {
-        Coin::Penny => {
-            println!("Lucky penny!");
-            1
-        }
-        Coin::Nickel => 5,
-        Coin::Dime => 10,
-        Coin::Quarter(state) => {
-            println!("State quarter from {:?}!", state);
-            25
-        }
-    }
-}
-
-fn main() {
-    let coin1 = Coin::Penny;
-    let coin2 = Coin::Quarter(UsState::Alaska);
-
-    println!("Value: {} cents", value_in_cents(coin1));
-    println!("Value: {} cents", value_in_cents(coin2));
-}
-</pre>
-
 Resources
 ======
 [Better resource to learn rust, the official doc](https://doc.rust-lang.org/book/)
