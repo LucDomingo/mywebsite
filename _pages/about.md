@@ -8,5 +8,5 @@ redirect_from:
   - /about.html
 ---
 
-- **[CV]**(https://lucdomingo.github.io/mywebsite/cv/)
-- **[Blog Post]**(https://lucdomingo.github.io/mywebsite/year-archive/)
+- [CV](https://lucdomingo.github.io/mywebsite/cv/)
+- [Blog Post](https://lucdomingo.github.io/mywebsite/year-archive/)
