@@ -46,12 +46,12 @@ Projets Menés
     - Mots-clés : Sysadmin Linux, Sécurité informatique
     
  - Développement d'un socle Bastionné pour le système de traitement initial des plans de vols
-   - Implémentation d'un hyperviseur conforme à une PSSI de haute criticité et  répondant à des contraintes liées à l'intégration du système de traitement initial des plans de vols.
+   - Implémentation d'un hyperviseur conforme à la PSSI DSNA et  répondant à des contraintes liées à l'intégration du système de traitement initial des plans de vols.
      - Mots-clés : Sysadmin Linux, Sécurité informatique, Python, Clustering
 
 **2021-22**
  - Développement d'un socle Bastionné pour le système de traitement des plans de vols
-   - Implémentation d'un hyperviseur conforme à une PSSI de haute criticité et répondant à des contraintes liées à l'intégration du système de plan de vols.
+   - Implémentation d'un hyperviseur conforme à la PSSI DSNA et répondant à des contraintes liées à l'intégration du système de plan de vols.
      - Mots-clés : Sysadmin Linux, Sécurité informatique, Python
 
 **2021**
