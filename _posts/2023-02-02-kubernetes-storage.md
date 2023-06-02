@@ -1,7 +1,7 @@
 ---
-title: 'Storage management in Kubernetes'
+title: 'Kubernetes CSI
 date: 2023-02-02
-permalink: /posts/2023/02/storage-kubernetes/
+permalink: /posts/2023/02/kubernetes-csi/
 tags:
   - kubernetes
   - CSI
