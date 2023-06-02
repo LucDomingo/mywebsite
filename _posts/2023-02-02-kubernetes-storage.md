@@ -1,5 +1,5 @@
 ---
-title: 'Kubernetes CSI
+title: 'Kubernetes CSI'
 date: 2023-02-02
 permalink: /posts/2023/02/kubernetes-csi/
 tags:
